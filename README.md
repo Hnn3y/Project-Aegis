@@ -1,32 +1,36 @@
 # 🛰️ AEGIS
 
-> **The Mission Control Platform for the Next Generation of Satellite Operations**
+> **The AI Mission Intelligence Platform for Modern Spacecraft Operations**
 
 ---
 
 # Overview
 
-AEGIS is an advanced satellite mission operations platform that combines mission planning, orbital visualization, satellite health monitoring, orbital debris intelligence, maintenance planning, and Digital Twin technology into one modern web application.
+AEGIS is an **AI-powered Mission Intelligence Platform** that combines satellite mission planning, orbital visualization, Digital Twin technology, health monitoring, orbital debris intelligence, and predictive engineering into a single operational platform.
 
-The long-term vision is to evolve AEGIS into the operational command center for autonomous robotic spacecraft capable of inspecting, servicing, upgrading, relocating, and supporting sustainable satellite operations.
+Rather than simply displaying satellite telemetry, AEGIS continuously analyzes mission data using AI to predict subsystem failures, assess mission risks, recommend maintenance actions, summarize engineering health, and assist mission controllers with operational decision-making.
+
+Every satellite is represented by an intelligent Digital Twin that evolves throughout the spacecraft's lifecycle.
+
+The long-term vision is for AEGIS to become the mission control platform for autonomous robotic satellite servicing spacecraft capable of inspecting, servicing, upgrading, and managing orbital assets.
 
 ---
 
 # Vision
 
-Current satellite operations require engineers to work across multiple disconnected tools.
+Spacecraft are becoming more autonomous, but mission operations remain fragmented and heavily dependent on manual engineering analysis.
 
-AEGIS unifies those workflows into one intelligent mission control platform.
+AEGIS transforms satellite operations by combining Digital Twin technology with AI-powered engineering intelligence.
 
-Every satellite is represented by a **Digital Twin**—a virtual model that continuously reflects its operational state, mission history, engineering health, and predicted future condition.
+Every satellite has a living Digital Twin that not only mirrors its current state but continuously evaluates mission health, predicts failures, identifies operational risks, and recommends engineering actions.
 
 Today:
 
-Mission Operations Platform.
+AI-powered Mission Intelligence Platform.
 
 Tomorrow:
 
-Mission Control for autonomous orbital servicing robots.
+The command center for autonomous robotic satellite servicing fleets.
 
 ---
 
@@ -48,18 +52,21 @@ As satellite constellations expand, operators need a single operational platform
 
 # Solution
 
-AEGIS centralizes satellite operations through:
+AEGIS centralizes satellite operations through one AI-driven platform.
 
+Core capabilities include:
+
+- AI Mission Intelligence
+- Satellite Digital Twins
 - Mission Planning
 - Orbit Visualization
-- Satellite Digital Twins
 - Health Monitoring
 - Orbital Debris Intelligence
 - Collision Risk Analysis
-- Inspection Reports
+- AI Inspection Reports
 - Maintenance Scheduling
 
-Everything is accessible from one interface.
+Instead of presenting raw telemetry alone, AEGIS converts mission data into actionable engineering recommendations using artificial intelligence.
 
 ---
 
@@ -127,13 +134,163 @@ Future
 - Fuel estimation
 - Delta-V estimation
 
+## AI Mission Planning
+
+Before a mission is created, the AI evaluates:
+
+- Estimated mission risk
+- Expected mission lifespan
+- Orbital congestion
+- Collision probability
+- Fuel efficiency
+- Mission feasibility
+
+The planner generates recommendations before the mission is approved.
+
 ---
+
+# 🤖 AI Mission Intelligence
+
+Artificial Intelligence is the central decision-making engine of AEGIS.
+
+Rather than functioning as a conversational chatbot, the AI continuously evaluates engineering telemetry, mission history, orbital dynamics, subsystem behaviour, and environmental conditions to assist mission controllers with operational decisions.
+
+## AI Engine
+
+The AI Engine powers every intelligent feature inside AEGIS.
+
+Responsibilities include:
+
+- Telemetry Analysis
+- Digital Twin Analysis
+- Engineering Reasoning
+- Mission Risk Assessment
+- Predictive Maintenance
+- Collision Analysis
+- Engineering Summaries
+- Inspection Reports
+- Operational Recommendations
+
+Every AI response should include:
+
+- Confidence Score
+- Supporting Evidence
+- Engineering Reasoning
+- Recommended Actions
+
+## AI Capabilities
+
+### Predictive Maintenance
+
+The AI evaluates subsystem health and predicts future failures before they occur.
+
+Examples:
+
+- Battery degradation forecasting
+- Solar panel efficiency decline
+- Fuel depletion prediction
+- Thermal anomaly prediction
+- Thruster wear estimation
+
+Instead of simply reporting current values, the AI recommends when maintenance should be scheduled.
+
+---
+
+### Mission Risk Assessment
+
+Each mission receives an AI-generated Mission Risk Score.
+
+The score considers:
+
+- Orbital debris density
+- Fuel reserves
+- Component degradation
+- Mission age
+- Thermal performance
+- Power availability
+- Communication reliability
+
+The AI also identifies the primary contributors to mission risk.
+
+---
+
+### Collision Intelligence
+
+Using orbital datasets, the AI evaluates nearby objects and determines potential collision risks.
+
+Capabilities:
+
+- Collision probability assessment
+- High-risk conjunction detection
+- Orbital congestion analysis
+- Recommended monitoring priority
+
+Future versions will recommend avoidance maneuvers.
+
+---
+
+### Engineering Copilot (Ask AEGIS)
+
+Mission controllers can interact with the AI through a conversational interface.
+
+Example prompts:
+
+- Why is battery health decreasing?
+- What maintenance should I prioritize?
+- Explain today's collision warning.
+- Summarize mission status.
+- What is my highest-risk satellite?
+- Compare today's telemetry with last week's.
+- Why did the Mission Health Score decrease?
+
+The AI answers using the satellite's Digital Twin, telemetry, mission history, orbital conditions, and engineering knowledge to provide contextual recommendations.
+
+---
+
+### Automated Mission Summary
+
+The AI automatically generates engineering summaries.
+
+Example:
+
+> Battery performance remains within operational limits. Solar panel efficiency has decreased by 4% over the past six months. Collision risk remains low. No immediate maintenance is required, although a detailed inspection is recommended within the next servicing cycle.
+
+---
+
+### Intelligent Recommendations
+
+The AI provides operational recommendations such as:
+
+- Schedule inspection
+- Increase monitoring frequency
+- Replace battery during next servicing window
+- Delay orbital maneuver
+- Prioritize subsystem diagnostics
+
+---
+
+### AI Mission Health Score
+
+Instead of relying solely on raw telemetry, the AI calculates an overall mission health score using multiple engineering parameters.
+
+Categories include:
+
+- Power
+- Thermal
+- Communications
+- Propulsion
+- Payload
+- Orbital Safety
+- Overall Mission Health
+
 
 # 🛰️ Satellite Digital Twin ⭐
 
-The Digital Twin is the heart of AEGIS.
+The Digital Twin is the central operational model within AEGIS.
 
-Every satellite has a continuously updated virtual engineering model.
+It continuously aggregates telemetry, mission history, orbital conditions, subsystem status, and inspection records into a living virtual representation of every satellite.
+
+The AI Mission Intelligence Engine continuously analyzes each Digital Twin to generate mission health assessments, engineering insights, predictive maintenance recommendations, and operational risk evaluations throughout the satellite's lifecycle.
 
 The Digital Twin provides:
 
@@ -183,7 +340,7 @@ Mission
 
 - Mission Age
 - Remaining Lifespan
-- Overall Health Score
+- AI Mission Health Score
 
 ---
 
@@ -201,24 +358,35 @@ Timeline of major events:
 
 ---
 
-## Predictive Engineering
+## AI Predictive Engineering
 
-The Digital Twin estimates:
+The Digital Twin is continuously analyzed by the AI engine.
 
-- Remaining battery life
+Predictions include:
+
+- Remaining battery lifespan
 - Solar panel degradation
-- Fuel depletion
-- Thermal trends
+- Fuel depletion timeline
+- Thruster wear estimation
+- Thermal anomaly prediction
+- Communication reliability forecast
 - Expected subsystem failures
-- Mission end-of-life estimate
+- Remaining mission lifespan
 
-Hackathon:
+Each prediction includes:
 
-Predictions generated from simulated data.
+- Confidence Score
+- Estimated Time to Failure
+- Engineering Explanation
+- Recommended Maintenance Action
+
+Hackathon Version:
+
+Predictions are generated from simulated telemetry and AI-generated engineering analysis.
 
 Future:
 
-Real telemetry.
+Predictions will use live spacecraft telemetry.
 
 ---
 
@@ -257,20 +425,23 @@ Stores:
 
 ---
 
-# 📡 Health Dashboard
+# 📡 AI Mission Health Dashboard
 
-Quick operational overview.
+The dashboard combines telemetry with AI-generated operational intelligence.
 
 Displays:
 
-- Health Score
-- Battery
-- Solar Panels
-- Fuel
-- Thermal
-- Communications
-- Payload
-- Active Alerts
+- Overall Mission Health Score
+- AI Risk Score
+- Battery Health
+- Solar Panel Efficiency
+- Fuel Remaining
+- Thermal Status
+- Communication Status
+- Payload Health
+- Collision Risk
+- Maintenance Priority
+- Active Engineering Alerts
 
 ---
 
@@ -294,23 +465,25 @@ Automatic avoidance recommendations.
 
 ---
 
-# 🔧 Inspection Reports
+# 🔧 AI Inspection Reports
 
-Generate engineering reports.
+Inspection reports are automatically generated using AI.
 
-Sections:
+Each report includes:
 
-- Satellite Summary
-- Health Assessment
-- Detected Issues
-- Images
-- Recommendations
-- Engineering Notes
-- Risk Score
+- Executive Summary
+- Satellite Health Overview
+- Engineering Assessment
+- Predicted Failures
+- Identified Risks
+- Maintenance Recommendations
+- AI Confidence Score
+- Historical Comparison
+- Risk Classification
 
-Export:
+Reports can be exported as PDF.
 
-PDF
+Future versions will include robotic inspection imagery.
 
 ---
 
@@ -387,33 +560,21 @@ Read Only
 
 # MVP Scope
 
-Landing Page
+The initial hackathon version includes:
 
-Authentication
-
-Mission Dashboard
-
-Interactive Earth
-
-Mock Satellites
-
-Mission Planner
-
-Digital Twin
-
-Health Dashboard
-
-Inspection Reports
-
-Maintenance Scheduler
-
-Collision Alerts
-
-Debris Viewer
-
-Mission Timeline
-
-Mock Telemetry
+- AI Mission Intelligence
+- AI Mission Health Score
+- Predictive Maintenance
+- AI Engineering Summaries
+- Mission Risk Assessment
+- Satellite Digital Twin
+- Interactive 3D Earth
+- Mission Planner
+- Orbital Debris Viewer
+- Collision Alerts
+- AI Inspection Reports
+- Maintenance Scheduler
+- Mock Telemetry
 
 ---
 
@@ -487,15 +648,95 @@ Animations
 - Framer Motion
 
 ---
-
 # Future Integrations
 
+- Satellite Failure Simulation
+- AI Recovery Mission Planning
 - CelesTrak
 - Space-Track
 - NASA APIs
 - NOAA Space Weather
 - CCSDS Telemetry
 - ESA Open Data
+
+---
+
+# AI Models
+
+AEGIS uses Large Language Models (LLMs) and AI-assisted analytics to transform satellite telemetry into actionable engineering insights.
+
+Hackathon Implementation
+
+### Large Language Model
+
+The Engineering Copilot is powered by a Large Language Model (LLM).
+
+Compatible providers include:
+
+- OpenAI GPT
+- Google Gemini
+- Anthropic Claude
+
+The implementation is provider-agnostic and can use any compatible LLM API.
+
+## AI Inputs
+
+The AI analyzes multiple sources of operational data:
+
+- Satellite telemetry
+- Digital Twin state
+- Historical mission records
+- Orbital debris data
+- Space weather data (future)
+- Engineering inspection history
+- Maintenance records
+
+AI Responsibilities
+
+- Generate engineering summaries
+- Predict subsystem failures
+- Assess mission health
+- Recommend maintenance actions
+- Explain engineering anomalies
+- Analyze collision risks
+- Produce inspection reports
+
+Future Vision
+
+As real telemetry becomes available, AEGIS will integrate machine learning models trained on historical spacecraft data to improve prediction accuracy and support autonomous satellite servicing operations.
+
+---
+
+# System Architecture
+
+React Frontend
+        │
+        ▼
+Node.js / Express API
+        │
+        ▼
+Telemetry Processing Layer
+        │
+        ▼
+Digital Twin Engine
+        │
+        ▼
+AI Mission Intelligence Engine
+        │
+ ┌──────┼──────────────┐
+ ▼      ▼              ▼
+Mission Risk      Predictive Maintenance
+Assessment        Engineering Copilot
+ ▼
+Inspection Reports
+ ▼
+Mission Dashboard
+        │
+        ├── Cesium 3D Visualization
+        ├── AI Reports
+        └── Digital Twin Interface        │
+        ▼
+PostgreSQL
 
 ---
 
@@ -544,7 +785,90 @@ Modern aerospace interface.
 9. Schedule a maintenance mission.
 10. Present the vision:
 
-> "AEGIS begins as an integrated mission control platform with Digital Twins for every satellite. As orbital servicing matures, the same platform becomes the command center for autonomous robotic spacecraft, enabling inspection, maintenance, upgrades, and sustainable satellite lifecycle management."
+> "Today, AEGIS demonstrates how AI-powered Digital Twins can transform raw satellite telemetry into actionable engineering intelligence. In the future, the same platform will become the command center for autonomous robotic spacecraft that inspect, service, upgrade, and extend the operational life of satellites."
+
+---
+
+# Project Structure
+
+src/
+├── app/
+├── components/
+├── pages/
+├── features/
+│   ├── ai/
+│   ├── digitalTwin/
+│   ├── mission/
+│   ├── planner/
+│   ├── debris/
+│   ├── dashboard/
+│   └── reports/
+├── services/
+├── api/
+├── lib/
+├── hooks/
+├── store/
+├── types/
+├── utils/
+└── assets/
+
+---
+
+# Data Flow
+
+Telemetry
+      │
+      ▼
+Digital Twin Update
+      │
+      ▼
+AI Mission Intelligence
+      │
+      ▼
+Risk Assessment
+      │
+      ▼
+Mission Health Score
+      │
+      ▼
+Recommendations
+      │
+      ▼
+Mission Dashboard
+
+---
+
+# Future AI Capabilities
+
+- Autonomous Mission Optimization
+- Autonomous Orbit Planning
+- Satellite Swarm Coordination
+- Robotic Servicing Mission Planning
+- Space Weather Impact Prediction
+- Autonomous Docking Assistance
+- Orbital Traffic Optimization
+- AI Debris Avoidance Planning
+
+---
+
+# Hackathon Scope
+
+The hackathon version focuses on demonstrating the core concepts of AEGIS using simulated telemetry and AI-generated engineering analysis.
+
+Included:
+
+- Interactive 3D Earth
+- Satellite Digital Twin
+- AI Mission Intelligence
+- AI Mission Health Dashboard
+- Mission Planner
+- Orbital Debris Viewer
+- Predictive Maintenance
+- Engineering Copilot
+- AI Inspection Reports
+- Maintenance Scheduler
+
+Mock telemetry and simulated orbital data are used to demonstrate the platform's capabilities.
 
 ---
 
