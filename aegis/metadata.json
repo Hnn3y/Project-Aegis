@@ -1,0 +1,6 @@
+{
+  "name": "AEGIS - AI Mission Intelligence",
+  "description": "AI-powered Mission Intelligence Platform for Spacecraft Operations, Digital Twins, Orbital Debris & Predictive Engineering",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
