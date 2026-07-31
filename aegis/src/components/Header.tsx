@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Activity,
   Satellite as SatelliteIcon,
@@ -17,6 +17,8 @@ import {
   Layers,
   ChevronDown,
   Sun,
+  RefreshCw,
+  CloudDownload,
 } from 'lucide-react';
 import { UserRole, AppNotification, Satellite } from '../types';
 
@@ -30,6 +32,19 @@ interface HeaderProps {
   satellites: Satellite[];
   onSelectSatellite: (sat: Satellite) => void;
   openTitanValeModal: () => void;
+  onSyncCelesTrak?: () => void;
+  isSyncingCelesTrak?: boolean;
+}
+
+interface SpaceWeatherData {
+  kpIndex: number;
+  kpStatus: string;
+  solarWindSpeedKmS: number;
+  solarFluxSFU: number;
+  geomagneticStormLevel: string;
+  solarRadiationStormLevel: string;
+  radioBlackoutLevel: string;
+  updatedAt: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -42,11 +57,38 @@ export const Header: React.FC<HeaderProps> = ({
   satellites,
   onSelectSatellite,
   openTitanValeModal,
+  onSyncCelesTrak,
+  isSyncingCelesTrak = false,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const [showNotifDropdown, setShowNotifDropdown] = useState(false);
   const [showRoleDropdown, setShowRoleDropdown] = useState(false);
+
+  // Live NOAA Space Weather State
+  const [spaceWeather, setSpaceWeather] = useState<SpaceWeatherData | null>(null);
+  const [isLoadingWeather, setIsLoadingWeather] = useState(false);
+
+  const fetchSpaceWeather = async () => {
+    setIsLoadingWeather(true);
+    try {
+      const res = await fetch('/api/noaa/space-weather');
+      const json = await res.json();
+      if (json.success && json.data) {
+        setSpaceWeather(json.data);
+      }
+    } catch (e) {
+      console.warn('Failed to load NOAA space weather live feed:', e);
+    } finally {
+      setIsLoadingWeather(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSpaceWeather();
+    const interval = setInterval(fetchSpaceWeather, 60000); // 1 minute auto-refresh
+    return () => clearInterval(interval);
+  }, []);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -83,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-50 bg-[#05070A]/95 backdrop-blur-xl border-b border-cyan-500/20 text-slate-100 shadow-2xl">
       {/* Top Utility & Space Weather Ticker Bar */}
       <div className="px-4 py-1.5 bg-[#080B12]/90 border-b border-slate-800/80 text-xs flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-cyan-400 font-mono font-semibold tracking-wider">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -99,27 +141,59 @@ export const Header: React.FC<HeaderProps> = ({
             <Zap className="w-3 h-3 text-cyan-400" />
             <span>TitanVale Ecosystem</span>
           </button>
+
+          {onSyncCelesTrak && (
+            <button
+              onClick={onSyncCelesTrak}
+              disabled={isSyncingCelesTrak}
+              className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-cyan-950/80 hover:bg-cyan-900/90 text-cyan-300 border border-cyan-500/50 transition-all text-xs font-mono disabled:opacity-50"
+              title="Sync live orbital TLE elements from CelesTrak NORAD API"
+            >
+              <CloudDownload className={`w-3 h-3 text-cyan-400 ${isSyncingCelesTrak ? 'animate-bounce' : ''}`} />
+              <span>{isSyncingCelesTrak ? 'SYNCING CELESTRAK...' : 'SYNC CELESTRAK TLE'}</span>
+            </button>
+          )}
         </div>
 
-        {/* Space Weather Ticker */}
-        <div className="hidden lg:flex items-center gap-6 font-mono text-[11px] text-slate-400">
-          <div className="flex items-center gap-1.5">
+        {/* Live NOAA Space Weather Ticker */}
+        <div className="hidden lg:flex items-center gap-5 font-mono text-[11px] text-slate-400">
+          <div className="flex items-center gap-1.5 bg-slate-900/60 px-2 py-0.5 rounded border border-slate-800">
             <Sun className="w-3.5 h-3.5 text-amber-400" />
-            <span>Kp-Index:</span>
-            <span className="text-emerald-400 font-bold">2.3 (Quiet)</span>
+            <span className="text-slate-400">NOAA SWPC Live:</span>
+            <span className="text-emerald-400 font-bold">
+              Kp {spaceWeather ? spaceWeather.kpIndex : '2.3'} ({spaceWeather ? spaceWeather.kpStatus.split(' ')[0] : 'QUIET'})
+            </span>
           </div>
+
           <div className="flex items-center gap-1.5">
-            <span>Solar Flux 10.7cm:</span>
-            <span className="text-cyan-400 font-bold">142 sfu</span>
+            <span>Solar Flux:</span>
+            <span className="text-cyan-400 font-bold">
+              {spaceWeather ? spaceWeather.solarFluxSFU : '168.4'} sfu
+            </span>
           </div>
+
           <div className="flex items-center gap-1.5">
-            <span>Solar Wind Speed:</span>
-            <span className="text-cyan-400 font-bold">418 km/s</span>
+            <span>Solar Wind:</span>
+            <span className="text-cyan-400 font-bold">
+              {spaceWeather ? spaceWeather.solarWindSpeedKmS : '412.5'} km/s
+            </span>
           </div>
+
           <div className="flex items-center gap-1.5">
-            <span>Geomagnetic Field:</span>
-            <span className="text-emerald-400 font-bold">STABLE</span>
+            <span>Geomagnetic:</span>
+            <span className="text-emerald-400 font-bold">
+              {spaceWeather ? spaceWeather.geomagneticStormLevel : 'G0'}
+            </span>
           </div>
+
+          <button
+            onClick={fetchSpaceWeather}
+            disabled={isLoadingWeather}
+            className="text-slate-500 hover:text-cyan-400 transition-colors"
+            title="Refresh NOAA Space Weather Data"
+          >
+            <RefreshCw className={`w-3 h-3 ${isLoadingWeather ? 'animate-spin' : ''}`} />
+          </button>
         </div>
 
         {/* User Role Selector */}

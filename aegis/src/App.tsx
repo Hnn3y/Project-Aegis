@@ -48,8 +48,48 @@ export function App() {
   const [copilotPrompt, setCopilotPrompt] = useState<string | undefined>(undefined);
   const [isEcosystemOpen, setIsEcosystemOpen] = useState(false);
   const [utcTime, setUtcTime] = useState<string>('');
+  const [isSyncingCelesTrak, setIsSyncingCelesTrak] = useState(false);
 
-  // Live UTC Clock update
+  // Live CelesTrak Fleet Telemetry Sync
+  const handleSyncCelesTrak = async () => {
+    setIsSyncingCelesTrak(true);
+    try {
+      const res = await fetch('/api/celestrak/sync-fleet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ satellites }),
+      });
+      const json = await res.json();
+      if (json.success && Array.isArray(json.satellites)) {
+        setSatellites(json.satellites);
+        
+        setSelectedSatellite((prev) => {
+          const updated = json.satellites.find((s: Satellite) => s.id === prev.id);
+          return updated || prev;
+        });
+
+        setNotifications((prev) => [
+          {
+            id: `notif-${Date.now()}`,
+            type: 'healthy',
+            title: 'CelesTrak Sync Complete',
+            timestamp: 'JUST NOW',
+            satelliteId: 'fleet',
+            severity: 'info',
+            message: `Live CelesTrak NORAD TLE telemetry synced successfully for AEGIS fleet.`,
+            read: false,
+          },
+          ...prev,
+        ]);
+      }
+    } catch (e: any) {
+      console.warn('CelesTrak fleet sync error:', e);
+    } finally {
+      setIsSyncingCelesTrak(false);
+    }
+  };
+
+  // Live UTC Clock update & initial CelesTrak Sync
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -57,6 +97,10 @@ export function App() {
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
+
+    // Initial sync
+    handleSyncCelesTrak();
+
     return () => clearInterval(interval);
   }, []);
 
@@ -116,6 +160,8 @@ export function App() {
         satellites={satellites}
         onSelectSatellite={handleSelectSatellite}
         openTitanValeModal={() => setIsEcosystemOpen(true)}
+        onSyncCelesTrak={handleSyncCelesTrak}
+        isSyncingCelesTrak={isSyncingCelesTrak}
       />
 
       {/* Main View Router */}
